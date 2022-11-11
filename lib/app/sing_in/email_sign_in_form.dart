@@ -1,5 +1,6 @@
 import 'package:counter_app/app/sing_in/validators.dart';
 import 'package:counter_app/common_widgets/show_alert_dialogs.dart';
+import 'package:counter_app/common_widgets/show_exeptions_alert_dialog.dart';
 import 'package:counter_app/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -49,10 +50,10 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       }
       Navigator.of(context).pop();
     } on FirebaseAuthException catch (e) {
-      showAlertDialog(context,
+      showExeptionAlertDialog(context,
           title: 'Sing in failed',
-          content: e.message!,
-          defaultActionText: 'OK');
+          exception: e,
+          );
       setState(() {});
     } finally {
       _isLoading = false;
